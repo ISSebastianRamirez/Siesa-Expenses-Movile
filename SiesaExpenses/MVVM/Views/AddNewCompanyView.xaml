@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SiesaExpenses.MVVM.Views.AddNewCompanyView"
+             Title="AddNewCompanyView"
+             NavigationPage.HasNavigationBar="False">
+    <Grid RowDefinitions=".1*,.8*,.1*">
+        <StackLayout>
+            <Frame BackgroundColor="#1031A7" BorderColor="Transparent" Margin="-5">
+                <Label Text="Agrega una nueva compañía" TextColor="White" FontSize="Title" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
+            </Frame>
+        </StackLayout>
+        <Frame Grid.Row="1" BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" HorizontalOptions="Center" VerticalOptions="Center">
+            <Entry Placeholder="Ingresa el nombre de tu nueva compañía" Text="{Binding CurrentCompany.CompanyName}"/>
+        </Frame>
+        <HorizontalStackLayout Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" Spacing="50">
+            <Button Text="Agregar" x:Name="btnAddCompany" Clicked="btnAddCompany_Clicked" BackgroundColor="#00C100" WidthRequest="100" HeightRequest="50"/>
+            <Button Text="Cancelar" x:Name="btnReturnShowCompanys" Clicked="btnReturnShowCompanys_Clicked" BackgroundColor="#FF0000" WidthRequest="100" HeightRequest="50"/>
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>

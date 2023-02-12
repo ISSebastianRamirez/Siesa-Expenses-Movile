@@ -1,0 +1,1 @@
+C:\Users\IS\source\repos\MAUI\SiesaExpenses\SiesaExpenses\SiesaExpenses.csproj;x64

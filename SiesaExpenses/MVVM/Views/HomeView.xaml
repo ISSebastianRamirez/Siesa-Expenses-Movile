@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SiesaExpenses.MVVM.Views.HomeView"
+             Title="HomeView">
+    <FlyoutPage.Flyout>
+        <ContentPage Title="FlyuoutInicio">
+            <VerticalStackLayout>
+                
+                <Button x:Name="GoHome" ImageSource="home" Margin="10" Text="Compañía Principal" TextColor="Black" Clicked="GoHome_Clicked" BackgroundColor="Transparent"/>
+                <Button x:Name="GoAdd" ImageSource="addcompany" Margin="10" Text="Agregar Compañía" TextColor="Black" Clicked="GoAdd_Clicked" BackgroundColor="Transparent"/>
+                <Button x:Name="GoShow" ImageSource="showcompanys" Margin="10" Text="Ver mis Compañías" TextColor="Black" Clicked="GoShow_Clicked" BackgroundColor="Transparent"/>
+            </VerticalStackLayout>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+    <FlyoutPage.Detail>
+        <ContentPage Title="VistaWebView" NavigationPage.HasNavigationBar="False">
+            <WebView x:Name="wvCompany"/>
+        </ContentPage>
+    </FlyoutPage.Detail>
+
+</FlyoutPage>

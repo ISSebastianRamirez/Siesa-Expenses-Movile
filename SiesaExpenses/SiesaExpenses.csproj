@@ -1,0 +1,81 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<RootNamespace>SiesaExpenses</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>Siesa Expenses</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.siesaexpenses</ApplicationId>
+		<ApplicationIdGuid>15b292eb-d093-458e-ae4b-343ce9b9b516</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\siesaicon.svg" />
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\siesasplashscreen.svg" Color="#1031A7" BaseSize="505,161" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="802,249" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\addcompany.svg" />
+	  <None Remove="Resources\Images\empresa.png" />
+	  <None Remove="Resources\Images\fondo.jpeg" />
+	  <None Remove="Resources\Images\gocompany.svg" />
+	  <None Remove="Resources\Images\home.svg" />
+	  <None Remove="Resources\Images\idea.png" />
+	  <None Remove="Resources\Images\padlock.png" />
+	  <None Remove="Resources\Images\showcompanys.svg" />
+	  <None Remove="Resources\Images\siesaexpenseslogo.png" />
+	  <None Remove="Resources\Images\trashcompany.svg" />
+	  <None Remove="Resources\Images\user.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+	  <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+	  <PackageReference Include="PropertyChanging.Fody" Version="1.30.3" />
+	  <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+	  <PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="MVVM\Views\HomeView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\ShowCompanysView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+</Project>

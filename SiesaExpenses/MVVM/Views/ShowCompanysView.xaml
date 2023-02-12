@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:SiesaExpenses.MVVM.ViewModels"
+             x:Class="SiesaExpenses.MVVM.Views.ShowCompanysView"
+             Title="ShowCompanysView"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
+
+    <Grid RowDefinitions=".1*,.8*,.1*">
+        <Frame BackgroundColor="#1031A7" BorderColor="Transparent" Margin="-5">
+            <Label Text="Estas son tus compañías" TextColor="White" FontSize="Title" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
+        </Frame>
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Companys}"
+                        SelectedItem="{Binding CurrentCompany}"
+                        HorizontalOptions="Center"
+                        x:Name="cllvCompanias">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Horizontal"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid RowDefinitions=".9*,.1*" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Frame CornerRadius="30" Margin="20,20,20,0" HeightRequest="300" WidthRequest="200" BackgroundColor="#2D71EA">
+                            <Grid RowDefinitions=".2*,.8*">
+                                <Image Grid.Row="0" Source="siesaexpenseslogo" HeightRequest="200" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                <Label Grid.Row="1" Text="{Binding CompanyName}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" FontSize="Title" FontAttributes="Bold"/>
+                            </Grid>
+                        </Frame>
+                        <Button Grid.Row="1" Text="Ir" x:Name="btnGoCompany" Clicked="btnGoCompany_Clicked"
+                                    HorizontalOptions="StartAndExpand" WidthRequest="100" Margin="10" BackgroundColor="#00C100" FontAttributes="Bold"
+                                    Command="{Binding Source={x:Reference cllvCompanias},Path=BindingContext.GoCompanyCommand}"
+                                    CommandParameter="{Binding .}"/>
+                        <Button Grid.Row="1" Text="Eliminar" x:Name="btnDeleteCompany" WidthRequest="100" HorizontalOptions="EndAndExpand" Margin="10" BackgroundColor="#FF0000" FontAttributes="Bold"
+                                    CommandParameter="{Binding .}"
+                                    Command="{Binding Source={x:Reference cllvCompanias},Path=BindingContext.RemoveCompanyCommand}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <HorizontalStackLayout Grid.Row="2" Spacing="10" HorizontalOptions="Center">
+            <Button Text="Agregar Compañía" FontAttributes="Bold" x:Name="btnAddCompany" Clicked="btnAddCompany_Clicked" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#1031A7" WidthRequest="150" HeightRequest="50"/>
+            <Button Text="Ir al Inicio" FontAttributes="Bold" x:Name="btnGoHome" Clicked="btnGoHome_Clicked" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#1031A7" WidthRequest="150" HeightRequest="50"/>
+        </HorizontalStackLayout>
+    </Grid>
+    
+</ContentPage>
